@@ -97,34 +97,27 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        IntList newList = new IntList(A.first, null);
-        IntList temp1 = A;
-        IntList temp2 = newList;
-        while (temp1.rest != null) {
-            temp1 = temp1.rest;
-            temp2.rest = new IntList(temp1.first, null);
-            temp2 = temp2.rest;
+        // 迭代
+//        IntList newList = new IntList(A.first, null);
+//        IntList temp1 = A;
+//        IntList temp2 = newList;
+//        while (temp1.rest != null) {
+//            temp1 = temp1.rest;
+//            temp2.rest = new IntList(temp1.first, null);
+//            temp2 = temp2.rest;
+//        }
+//
+//        temp2.rest = B;
+//
+//        return newList;
+
+        if (A == null) {
+            return B;
+        } else {
+            return new IntList(A.first, catenate(A.rest, B));
         }
 
-        temp2.rest = B;
 
-        return newList;
-//        IntList p = new IntList();
-//        IntList q = p;
-//        IntList temp = A;
-//        for (int size = A.size(), i = 0; i < size; i++) {
-//            System.out.println("cnm");
-//            p.rest = new IntList(temp.first, temp.rest);
-//            p = p.rest;
-//            temp = temp.rest;
-//        }
-//        temp = B;
-//        for (int size = B.size(), i = 0; i < size; ++i) {
-//            p.rest = new IntList(temp.first, temp.rest);
-//            p = p.rest;
-//            temp = temp.rest;
-//        }
-//        return q.rest;
     }
 
     public int size() {
@@ -260,5 +253,12 @@ public class IntList {
         return out.toString();
     }
 
+    public static void main(String[] args) {
+        IntList a=IntList.of(1,2,3);
+        IntList b=IntList.of(4,5,6);
+
+        IntList c=IntList.catenate(a,b);
+        System.out.println(c);
+    }
 }
 
